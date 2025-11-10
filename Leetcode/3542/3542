@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        stack<int> st;
+
+        int res = 0;
+        int n = nums.size();
+         for (int x : nums) {
+
+            if (x == 0) {
+                while (!st.empty()) st.pop();
+                continue;
+            }
+
+            while (!st.empty() && st.top() > x) st.pop();
+            
+            if (st.empty() || st.top() < x) {
+                st.push(x);
+                res++;
+            }
+        }
+
+        return res;
+    }
+};
